@@ -45,9 +45,18 @@ function ProjectCard({
         <View style={[styles.iconBadge, { backgroundColor: start + '30' }]}>
           <Ionicons name="folder-open" size={18} color={start} />
         </View>
-        <View style={styles.cardMeta}>
+        <TouchableOpacity
+          onPress={() => {
+            Alert.alert('Excluir projeto', `Excluir "${project.name}"?`, [
+              { text: 'Cancelar', style: 'cancel' },
+              { text: 'Excluir', style: 'destructive', onPress: () => onDelete(project.id) },
+            ])
+          }}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          style={styles.cardMeta}
+        >
           <Ionicons name="ellipsis-horizontal" size={16} color={Colors.textMuted} />
-        </View>
+        </TouchableOpacity>
       </View>
 
       <Text style={styles.cardName} numberOfLines={1}>{project.name}</Text>
